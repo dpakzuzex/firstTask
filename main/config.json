@@ -1,0 +1,21 @@
+{
+    "keyJWT": "gdF011iE4EceuA4D",
+    "postgres": {
+        "host": "127.0.0.1",
+        "port": 5432,
+        "user": "snatchapp",
+        "password": "password",
+        "dbname": "new_bots",
+        "maxConnect": 10000
+    },
+    "redis": {
+        "host": "127.0.0.1",
+        "port": 6379,
+        "password": "",
+        "dbname": 1,
+        "maxConnect": 10000,
+        "prefix": "snatchbot.",
+        "maxAge": 900,
+        "idleTimeout": 900
+    }
+}
