@@ -6,8 +6,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"snatchbot/firstTask/config"
 
-	"../config"
+	_ "github.com/lib/pq"
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/mux"
@@ -37,7 +38,7 @@ func main() {
 	}
 	fmt.Println("Database postgres connect:", viper.GetString("postgres.host"))
 
-	_, err = config.NewRedisClient()
+	_, err = config.RedisConnect()
 	if err != nil {
 		log.Printf("Error database redis connect: %+v", err)
 		return

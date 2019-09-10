@@ -43,7 +43,7 @@ func PostgresConnect() (err error) {
 		viper.GetString(`postgres.user`),
 		viper.GetString(`postgres.dbname`),
 		viper.GetString(`postgres.password`),
-		viper.GetString(`postgres.port`),
+		viper.GetInt(`postgres.port`),
 		"disable",
 	))
 	if err != nil {
@@ -78,7 +78,7 @@ type Pool struct {
 }
 
 // Connect database redis
-func NewRedisClient() (*Pool, error) {
+func RedisConnect() (*Pool, error) {
 	ro := &Options{
 		Host:     viper.GetString(`redis.host`),
 		Port:     viper.GetInt(`redis.port`),
@@ -105,9 +105,7 @@ func NewPool(o *Options) (*Pool, error) {
 		conn, err := redis.Dial("tcp", fmt.Sprintf("%s:%d", o.Host, o.Port), redis.DialDatabase(o.DBName))
 		if err != nil {
 			log.Printf("ERROR: fail init redis: %s", err.Error())
-			// os.Exit(1)
 		}
-		// defer conn.Close()
 		return conn, err
 	}, 30000)
 
